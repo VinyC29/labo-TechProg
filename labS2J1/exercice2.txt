@@ -1,0 +1,5 @@
+12 On
+15 Ok
+19 On
+24 On
+Total O(n + k)
