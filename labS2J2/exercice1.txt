@@ -1,0 +1,6 @@
+21 On
+22 Ok					
+25 On
+31 Ok
+
+Total O(n * k)
