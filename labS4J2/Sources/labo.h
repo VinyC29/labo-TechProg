@@ -9,6 +9,16 @@ void* allocate(size_t size);
 * Declarer une structure de donnee appeler Queue qui est un noeud comme le Node de la liste doublement chainee. Declare aussi un noeud qui va avoir le nom Node.
 */
 
+typedef struct Node Node;
+
+struct Node {
+	void* data;
+	Node* prev;
+	Node* next;
+};
+
+typedef Node Queue;
+
 typedef struct person_t {
 	char name[256];
 	size_t age;
