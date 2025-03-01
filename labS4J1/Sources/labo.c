@@ -52,46 +52,21 @@ void reverseStack(Stack* s) {
 
 
 void sortStack(Stack* s) {
-	
+
 	Stack* tempStack = new_stack(s->max_size);
 
-	while (s->top > 0) {
-		void* tempData1 = pop(s);
-		Person* person1 = (Person*)tempData1;
-		void* tempData2 = pop(s);
-		Person* person2 = (Person*)tempData2;
+	while (s->top >= 0) {
+		void* tempData = pop(s);
+		Person* tempPerson = (Person*)tempData;
 
-		if (person1->age > person2->age) {
-			push(tempStack, person1);
-			push(s, person2);
+		while (tempStack->top >= 0 && ((Person*)peek(tempStack))->age > tempPerson->age) {
+			push(s, pop(tempStack));
 		}
-		else
-		{
-			push(tempStack, person2);
-			push(s, person1);
-		}
+
+		push(tempStack, tempPerson);
 	}
 
-	void* tempData = pop(s);
-	push(tempStack, tempData);
-
-	while (tempStack->top > 0) {
-		void* tempData1 = pop(tempStack);
-		Person* person1 = (Person*)tempData1;
-		void* tempData2 = pop(tempStack);
-		Person* person2 = (Person*)tempData2;
-
-		if (person1->age < person2->age) {
-			push(s, person1);
-			push(tempStack, person2);
-		}
-		else
-		{
-			push(s, person2);
-			push(tempStack, person1);
-		}
+	while (tempStack->top >= 0) {
+		push(s, pop(tempStack));
 	}
-
-	void* tempDataEnd = pop(tempStack);
-	push(s, tempDataEnd);
 }
