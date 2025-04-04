@@ -19,7 +19,12 @@ void* stack_pop(Stack* s);
 * TreeNode a aussi deux propriete de type TreeNode nommer left et right.
 */
 
-
+typedef struct TreeNode TreeNode;
+typedef struct TreeNode {
+	void* data;
+	TreeNode* left;
+	TreeNode* right;
+}TreeNode;
 
 typedef struct Node Node;
 typedef struct Node {
@@ -52,10 +57,10 @@ void tree_add_node(TreeNode* root, TreeNode* node);
 
 /*
 * Programmer l'algorithme de depth first search afin de trouver la cle. Pour programmer cet algorithme, vous avez besoins d'une pile/stack, ca definition est fourni.
-*/
+*/ 
 int dfs(TreeNode* root, void* key);
 
 /*
 * Programmer l'algorithme de breath first search afin de trouver la cle. Pour programmer cet algorithme, vous avez besoins d'une file/queue, ca definition est fourni.
 */
-int bfs(TreeNode* root, void* key);
+int bfs(TreeNode* root, void* key); 
