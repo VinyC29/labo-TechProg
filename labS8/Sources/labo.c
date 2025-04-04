@@ -48,8 +48,9 @@ int bfs(TreeNode* root, void* key)
 	queue_init(frontier);
 	queue_push(frontier, root);
 	int nodeVisited = 0;
+	int nbNode = 1;
 
-	while (frontier->count > 0)
+	while (frontier->count < nbNode)
 	{
 		Node* node = queue_pop(frontier);
 		TreeNode* currentNode = node->data;
@@ -60,10 +61,12 @@ int bfs(TreeNode* root, void* key)
 
 		if (currentNode->left != NULL) {
 			queue_push(frontier, currentNode->left);
+			nbNode++;
 		}
 
 		if (currentNode->right != NULL) {
 			queue_push(frontier, currentNode->right);
+			nbNode++;
 		}
  	
 	}
