@@ -39,49 +39,33 @@ void tree_add_node(TreeNode* root, TreeNode* node) {
 
 int dfs(TreeNode* root, void* key)
 {
-	Stack* frontier = allocate(sizeof(Stack));
-	stack_init(frontier);
-	TreeNode* currNode = root;
-	int nodeVisited = 1;
-
-	while (currNode->data != key)
-	{
-		if (currNode->right != NULL) {
-			stack_push(frontier, currNode->right);
-		}
-
-		if (currNode->left != NULL) {
-			stack_push(frontier, currNode->left);
-		}
-
-		Node* node = stack_pop(frontier);
-		currNode = node->data;
-		nodeVisited++;
-	}
-
-	return nodeVisited;
+	return 0;
 }
 
 int bfs(TreeNode* root, void* key)
 {
 	Queue* frontier = allocate(sizeof(Queue));
 	queue_init(frontier);
-	TreeNode* currNode = root;
-	int nodeVisited = 1;
+	queue_push(frontier, root);
+	int nodeVisited = 0;
 
-	while (currNode->data != key && currNode != NULL)
+	while (frontier->count > 0)
 	{
-		if (currNode->right != NULL) {
- 			queue_push(frontier, currNode->right);
-		}
-
-		if (currNode->left != NULL) {
-			queue_push(frontier, currNode->left);
-		}
-
- 		Node* node = queue_pop(frontier);
-		currNode =  node->data;
+		Node* node = queue_pop(frontier);
+		TreeNode* currentNode = node->data;
 		nodeVisited++;
+		if (currentNode->data == key) {
+			break;
+		}
+
+		if (currentNode->left != NULL) {
+			queue_push(frontier, currentNode->left);
+		}
+
+		if (currentNode->right != NULL) {
+			queue_push(frontier, currentNode->right);
+		}
+ 	
 	}
 
 	return nodeVisited;
